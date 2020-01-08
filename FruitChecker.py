@@ -3,25 +3,28 @@ from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from keras.preprocessing.image import ImageDataGenerator
 from keras.preprocessing import image
+from keras.util import to_categorical
 import numpy as np
 
 #Folder named original_data_set contains at least 1 folder of good and 1 folder of bad fruit
 dataLocation = 'original_data_set'
 
 classifier = Sequential([
+    Flatten(), # flattens the input to the model
     Conv2D(32, (3, 3), input_shape = (64, 64, 3), activation = 'relu'),
     Conv2D(64, (3, 3), activation = 'relu'),
     MaxPooling2D(pool_size = (2, 2)),
     Dense(units = 128, activation = 'relu'),
     Conv2D(128, (3, 3), activation = 'relu'),
     MaxPooling2D(pool_size = (2, 2)),
-    Flatten(), # flattens the input to the model
     Dense(units = 1, activation = 'softmax')
 ])
 
+classifier = to_categorical(classifier, num_classes = 6)
+
 classifier.compile(
     optimizer = 'adam',
-    loss = 'binary_crossentropy', 
+    loss = 'categorical_crossentropy', 
     metrics = ['accuracy']
 )
 
