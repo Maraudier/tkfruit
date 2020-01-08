@@ -1,0 +1,13 @@
+"""
+tf.keras.layers.Dense
+
+Dense implements the operation:
+    output = activation(dot(input, kernel) + bias), where
+        activation: the element-wise activation function passed as the activation argument
+        kernel: a weights matrix created by the layer
+        bias: a bias vector created by the layer (applicable only when use_bias=True)
+        
+Source: https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dense?version=stable
+"""
+
+
