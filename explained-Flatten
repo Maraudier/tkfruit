@@ -1,0 +1,8 @@
+"""
+tf.keras.layers.Flatten():
+
+This layer outputs a tensor of rank 1, whether the input is rank 1, or higher.
+
+Example:
+          If you input a tensor of shape (4, 4, 4), it will output a tensor of shape (64).
+"""
