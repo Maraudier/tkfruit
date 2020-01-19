@@ -1,0 +1,37 @@
+"""
+tf.keras.layers.MaxPooling2D
+
+"Max pooling operation for spatial data"
+
+Arguments:
+
+- 'pool_size' specifies the factors by which to downscale (vertical, horizontal).
+    Example: (2, 2) will halve the input in both spatial dimensions.
+    If one integer is passed, "the same window length will be used for both dimensions."
+- 'strides'
+- 'padding'
+- 'data_format' specifies the ordering of the dimensions in the inputs.
+    two options:
+        1. 'channel_first' - (batch, channels, height, width)
+        2. 'channel_last' - (batch, height, width, channels)
+        
+Input Shape:
+    - If data_format = 'channels_last', 4D tensor with shape (batch_size, rows, cols, channels)
+    - If data_format = 'channels_first', 4D tensor with shape (batch_size, channels, rows, cols)
+    
+My Notes: 
+
+Imagine a stack of photos. It has four dimensions:
+    - height, spatial dimension
+    - width, spatial dimension
+    - number of colors
+    - number of photos
+
+MaxPooling2D reduces the spatial dimensions, height and width.
+
+Each value in a tensor representing a stack of photos (rank 4) has 4 numbers that specify its position in the tensor
+    1. Which photo?
+    2. What color (R, G, B)?
+    3. What height?
+    4. What width?
+"""
