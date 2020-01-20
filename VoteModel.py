@@ -2,11 +2,12 @@
 """
 Kyle Cloud
 January 17, 2020
+* Updated January 19, 2020 - add model functionality
 
 Prerequisite: Train 7 models.
 
 The purpose of this class is to
-have 5(?) trained models vote on how
+have 7 trained models vote on how
 to classify an image of fruit.
 """
 
@@ -15,8 +16,12 @@ from statistics import mode
 
 class VoteModel():
     
-    def __init__(self, models): # take in 5 or 7 models
+    def __init__(self, models): # take in 7 models
         self.__models = models
+        
+    # added on January 19, 2020
+    def add_model(self, model):
+        self.__models.append(model)
         
     def classify(self, image, num2fruit):
         votes = []
