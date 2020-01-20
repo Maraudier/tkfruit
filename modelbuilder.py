@@ -31,7 +31,7 @@ CLASS_NAMES = np.array([item.name for item in data_dir.glob('*') if item.name !=
 image_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255, validation_split=0.2)
 
 # CONSTANTS, currently unsure what to set IMG_HEIGHT and IMG_WIDTH
-BATCH_SIZE = 64
+BATCH_SIZE = 128
 IMG_HEIGHT = 256
 IMG_WIDTH = 256
 STEPS_PER_EPOCH = np.ceil(image_count/BATCH_SIZE)
@@ -56,19 +56,20 @@ train_images, train_labels = next(train_data_gen)
 test_images, test_labels = next(test_data_gen)
 
 # Model creation for CNN, currently unsure if 64 and 128 are good numbers to use and if layers are appropriate
-model = models.Sequential()
-model.add(layers.Conv2D(64, (3, 3), activation='relu', input_shape=(256, 256, 3)))
-model.add(layers.BatchNormalization())
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-model.add(layers.BatchNormalization())
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-model.add(layers.BatchNormalization())
-model.add(layers.Flatten())
-model.add(layers.Dense(128, activation='relu'))
-model.add(layers.Dropout(.5))
-model.add(layers.Dense(6, activation='softmax'))
+model = models.Sequential([
+    layers.Conv2D(64, (3, 3), activation='relu', input_shape=(256, 256, 3)),
+    layers.BatchNormalization(),
+    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(128, (3, 3), activation='relu'),
+    layers.BatchNormalization(),
+    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(128, (3, 3), activation='relu'),
+    layers.BatchNormalization(),
+    layers.Flatten(),
+    layers.Dense(128, activation='relu'),
+    layers.Dropout(.5),
+    layers.Dense(6, activation='softmax')
+])
 
 # It's my understanding that these hyperparameters are good for our dataset
 model.compile(optimizer='adam',
