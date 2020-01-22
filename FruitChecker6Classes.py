@@ -1,10 +1,9 @@
-
-from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization
-from keras.preprocessing.image import ImageDataGenerator
-from keras.preprocessing import image
-from keras.constraints import maxnorm
-#from keras.utils import to_categorical
+from tf.keras import Sequential
+from tf.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization
+from tf.keras.preprocessing.image import ImageDataGenerator
+from tf.keras.preprocessing import image
+from tf.keras.constraints import maxnorm
+#from tf.keras.utils import to_categorical
 import numpy as np
 #import cv2
 
@@ -71,13 +70,16 @@ test_set = test_datagen.flow_from_directory(
     class_mode = 'categorical'
 )
 
-# for multiprocessor use, add to fit_generator: use_multiprocessing = True, workers = x 
+# for multiprocessor use, add to fit(): use_multiprocessing = True, workers = x 
 # x = your CPU Family. Run lscpu in linux to verify your available workers
-classifier.fit_generator(
+
+# Use fit() instead of fit_generator() with Tensorflow because fit_generator is
+# going to be deprecated in a newer version of Tensorflow
+classifier.fit(
     training_set,
-    steps_per_epoch = 100, 
     epochs = 30, 
     validation_data = test_set,
+    steps_per_epoch = 100,
     validation_steps = 100
 )
 
