@@ -9,13 +9,14 @@ https://www.kaggle.com/sriramr/apples-bananas-oranges
 
 Research for Data:
 Kaggle, Data.gov, zenodo, 
-Google Colap has the ability to connect directly to kaggle, download a data set and run on the cloud. Neat. 
+Google Colab has the ability to connect directly to kaggle, download a data set and run on the cloud. Neat. 
 
 
 Research for Infrastructure:
 GPUs and TPUs are not included in the Always Free offer.  You are always charged for GPUs and TPUs that you add to VM instances. 
 Google Colab provides GPU and TPU free of use. Kumar advises us possibly large datasets may have issues. 
-Local machines have CPU across the team with a few GPU's. Some attempting to use GPU's locally. Issues with CUDA support on some laptop GPU's
+Local machines have CPU across the team with a few GPU's. Some attempting to use GPU's locally. Issues with CUDA support on some laptop GPU's.
+Google Collab can experience an issue where there is a runtime error that forces you to restart the runtime.
 
 
 Research for Use Case:
