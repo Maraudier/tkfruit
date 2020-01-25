@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block result %}
+
+<img src={{img_b64}}>
+
+<table>
+    <thead>
+        <tr>
+            <th>Fruit</th>
+            <th>Confidence</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in result %}
+        <tr>
+            <th>{{ item }}</th>
+            <td>{{ result[item] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}
