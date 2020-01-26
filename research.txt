@@ -8,22 +8,13 @@ https://www.kaggle.com/sriramr/apples-bananas-oranges
 Research for Data:
 Kaggle, Data.gov, zenodo, 
 Google Colab has the ability to connect directly to kaggle, download a data set and run on the cloud. Neat. 
-<<<<<<< HEAD
-=======
-
->>>>>>> 06da096d5c68f3a81632e3054f11667fd960a5a8
 
 Research for Infrastructure:
 GPUs and TPUs are not included in the Always Free offer.  You are always charged for GPUs and TPUs that you add to VM instances. 
-
 Google Colab provides GPU and TPU free of use. Kumar advises us possibly large datasets may have issues. 
-<<<<<<< HEAD
 GPUs are faster than TPUs for processing images on Google Colab. 
-Local machines have CPU across the team with a few GPU's. Some attempting to use GPU's locally. Issues with CUDA support on some laptop GPU's
-=======
 Local machines have CPU across the team with a few GPU's. Some attempting to use GPU's locally. Issues with CUDA support on some laptop GPU's.
 Google Collab can experience an issue where there is a runtime error that forces you to restart the runtime.
->>>>>>> 06da096d5c68f3a81632e3054f11667fd960a5a8
 
 The Inception module (mentioned in 2 of the articles on Medium we read) is only a custom block of convolutional layers & is most likely meant to be used
 as part of a larger neural network rather than acting as a neural network on its own. (unsure of whether to actually add this to the file on Github)
