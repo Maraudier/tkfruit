@@ -1,0 +1,26 @@
+Crossentropy Notes
+An Example:
+model.compile(optimizer='adam',
+             loss='sparse_categorical_crossentropy',
+             metrics=['accuracy'])
+
+
+
+https://keras.io/metrics/
+https://keras.io/losses/
+In order to evaluate the model, we need to evaluate the model based on several metrics including "loss". "Loss" is the difference between reality and what is predicted.
+ 
+
+
+
+tf.keras.backend.categorical_crossentropy
+https://www.tensorflow.org/api_docs/python/tf/keras/backend/categorical_crossentropy?version=nightly
+
+Use this crossentropy loss function when there are two or more label classes. We expect labels to be provided in a one_hot representation. Categorical crossentropy is the difference between an output tensor and a target tensor.
+
+
+
+tf.keras.metrics.SparseCategoricalCrossentropy
+https://www.tensorflow.org/api_docs/python/tf/keras/losses/SparseCategoricalCrossentropy?version=nightly
+
+If you want to provide labels as integers, please use SparseCategoricalCrossentropy loss. There should be # classes  floating point values per feature. This computes the crossentropy loss between the labels and predictions.
