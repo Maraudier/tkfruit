@@ -1,7 +1,7 @@
 # Classification and Evaluation of Fruit Using a Convolutional Neural Network (CNN)
 
 ## Team Good Apple:
-**Project Manager:** Michael Grillo
+**Project Manager:** Michael Vincent Grillo
 
 **Project Associates:** Matthew Davis, William Ah Tou, Kyle Cloud, Davis Hill, Hanan Kwok
 
