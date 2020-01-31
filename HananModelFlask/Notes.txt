@@ -1,0 +1,7 @@
+Notes about my model:
+
+Google Colab put the 6 folders/classes of train & test data in alphabetical order, so my model
+was trained on the 6 classes in the same manner. I had to set the list of class names in 
+Flask deployment to match that order for the inference/confidence values to display correctly.
+The order of class names in my model (and in the Flask deployment) are as follows: 
+Fresh Apple, Fresh Banana, Fresh Orange, Rotten Apple, Rotten Banana, Rotten Orange
