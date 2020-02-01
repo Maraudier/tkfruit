@@ -28,3 +28,7 @@ Research for Use Case:
 Contact Data.gov/agriculture via webform. with no response
 Contact to Plant Village via direct email address: mayor@plantvillage.org
 Contact Publix Corporate for opportunity to vist and view fruit handling. Local store re-directed to corporate for approval. Corporate denied stating proprietary info.
+
+Different optimizers for neural networks:
+SGD with momentum, learning rate, and nesterov parameters
+ADAM
