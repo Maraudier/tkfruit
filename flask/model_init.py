@@ -1,41 +1,45 @@
 import tensorflow as tf
 
-def init(model_dir, with_gpu = True):
-    """One time initialization of the model and Tensorflow to be called
-    as part of the server startup script."""
-    if with_gpu:
-        gpus = tf.config.experimental.list_physical_devices('GPU')
-        if gpus:
-            try:
-                for gpu in gpus:
-                    tf.config.experimental.set_memory_growth(gpu, True)
-                    logical_gpus = tf.config.experimental.list_logical_devices('GPU')
-            except RuntimeError as e:
-                print(e)
+class Model:
+    def __init__(self, filepath, resize, save_type):
+        self.fold_name = filepath
+        self.resize = resize
+        self.model_dir = "./models/" + self.fold_name
+        # Loading the saved model from directory
+        if (save_type == 'pb'):
+            self.model = tf.saved_model.load(self.model_dir)
+        elif (save_type == 'h5'):
+            self.model = tf.keras.models.load_model(self.model_dir)
+        
+
+    # Preprocess and run image through model, returns a map to results
+    def process_img(self, img):
+        """Image preprocessing function to prepare image for inference in the model"""
+        img.set_shape((None, None, 3))
+        
+        # ADJUST SIZE PARAMETERS BASED ON MODEL
+        img = tf.image.resize(img, [self.resize, self.resize])
+        
+        img = tf.reshape(img, (-1, self.resize, self.resize, 3))
     
-    return tf.saved_model.load(model_dir)
-
-def preprocess_img(img):
-    """Image preprocessing function to prepare image for inference in the model"""
-    img.set_shape((None, None, 3))
-    img = tf.image.resize(img, [128, 128])
+        # Casting to float32 - necessary as this is the input type of my models 
+        # first layer
+        img = tf.cast(img, dtype=tf.float32)
+        
+        # Normalize data
+        img = img / 255
+        
+        # Putting image into model
+        result = self.model(img)
     
-    img = tf.reshape(img, (-1, 128, 128, 3))
-
-    # Casting to float32 - necessary as this is the input type of my models 
-    # first layer
-    img = tf.cast(img, dtype=tf.float32)
+        # Convert result to a numpy array
+        return result[0].numpy()
     
-    # Normalize data and invert
-    img = (img / 255)
+# Converts numpy_array results into mapped data with labels
+def map_result(np_arr):
 
-    return img
-
-def value_mapper(inference_result):
-    np_arr = inference_result[0].numpy()
-
-    # 19 values which represent what characters my model classifies
-    chars = ['apple','orange','banana','rotten apple','rotten orange','rotten banana']
+    # 6 values which represent what fruits our model classifies
+    chars = ['Apple', 'Banana', 'Orange', 'Rotten Apple', 'Rotten Banana', 'Rotten Orange']
 
     mapping = {}
 
