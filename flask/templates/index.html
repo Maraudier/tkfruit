@@ -4,6 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            text-align: center;
+        }
+        img {
+            width: 30%;
+            height: auto;
+        }
+    
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        header {
+            height: 100px;
+            background-color: #336699;
+        }
+        form {
+            background-color: #336699;
+        }
+    </style>
+    {% block style %}
+    {% endblock %}
     <title>Document</title>
 </head>
 <body>
@@ -14,7 +42,8 @@
 
     <form action="/", method="POST", enctype="multipart/form-data">
         <input type="file", name="img", accept="image/*">
-        <input type="submit" value="Submit">
+        <input type="submit", name="action", value="Submit">
+        <input type="submit", name="action", value="Inference Data">
     </form>
     {% block result %}
     {% endblock %}

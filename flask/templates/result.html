@@ -1,7 +1,61 @@
 {% extends "index.html" %}
 
-{% block result %}
+{% block style %}
+<style>
+div{
+    border-color: black;
+    border-width: 7px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    padding: 5px;
+    border: 1px solid black;
+}
+#fresh{
+    background-color: #55bb66;
+}
+#trash{
+    background-color: grey;
+}
+div section{
+    border-radius: 5px;
+    height: 200px;
+    display: inline-block;
+    width: 30%;
+    background: #88add0;
+    margin: 5px 5px;
+}
+</style>
+{% endblock %}
 
+{% block result %}
+    {% macro dispResult(result, id) %}
+        {% if result == id%}
+            <p>{{ id }}:</p>
+            <img src={{ img_b64 }}>
+        {% else %}
+            <p>{{ id }}:</p>
+        {% endif %}
+    {% endmacro %}
+            
+    <h1>Fresh Bins</h1>
+    <div id="fresh">
+        <section id="banana">{{ dispResult(result,"Banana") }}</section>
+        <section id="apple">{{ dispResult(result,"Apple") }}</section>
+        <section id="orange">{{ dispResult(result,"Orange") }}</section>
+    </div>
+    <h1>Trash Bin</h1>
+    <div id="trash">
+        <section id="badbanana">{{ dispResult(result,"Rotten Banana") }}</section>
+        <section id="badapple">{{ dispResult(result,"Rotten Apple") }}</section>
+        <section id="badorange">{{ dispResult(result,"Rotten Orange") }}</section>
+    </div>
+{% endblock %}
+
+<!--
+OLD IMPLEMENTATION WITH MAPPING RESULTS
 <img src={{img_b64}}>
 
 <table>
@@ -20,6 +74,5 @@
         {% endfor %}
     </tbody>
 
-</table>
-
-{% endblock %}
+</table> 
+-->
